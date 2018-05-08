@@ -1,0 +1,9 @@
+http://www.amica.fi/modules/json/json/Index?costNumber=0417&language=fi
+
+costNumber
+    Aura = 0413
+    Carelia = 0417
+    Tori36 = 0401
+    Futura = 041702 (Natura, Borealis sama)
+    
+    
