@@ -1,11 +1,10 @@
 package com.lamad.studentcafeterias;
 
 import android.graphics.Bitmap;
+import android.util.SparseArray;
+import java.util.List;
 
 import com.google.android.gms.maps.model.LatLng;
-
-import java.util.HashMap;
-import java.util.List;
 
 public class Restaurant {
 
@@ -14,17 +13,34 @@ public class Restaurant {
     private LatLng location;
     private String link;
     private String address;
-    private HashMap<String, List<Dish>> menu; // <Day, components>
+    private SparseArray<List<Dish>> menu; // SparseArray is more efficient than HashMap when pairing objects to Integers
 
+    /**
+     * For testing purposes
+     * @param name
+     * @param address
+     * @param link
+     */
     public Restaurant(String name, String address, String link) {
         this.name = name;
         this.address = address;
         this.link = link;
-
-
     }
 
-    public Restaurant(String name, String address, String link, LatLng location, HashMap<String, List<Dish>> menus) {
+    public Restaurant(String name, SparseArray<List<Dish>> menus) {
+        this.name = name;
+        this.menu = menus;
+    }
+
+    /**
+     *
+     * @param name
+     * @param address
+     * @param link
+     * @param location
+     * @param menus
+     */
+    public Restaurant(String name, String address, String link, LatLng location, SparseArray<List<Dish>> menus) {
         this.name = name;
         this.address = address;
         this.link = link;
@@ -52,7 +68,7 @@ public class Restaurant {
         return link;
     }
 
-    public HashMap<String, List<Dish>> getMenu() {
+    public SparseArray<List<Dish>> getMenu() {
         return menu;
     }
 
@@ -72,11 +88,25 @@ public class Restaurant {
         this.link = link;
     }
 
-    public void setMenu(HashMap<String, List<Dish>> menu) {
+    public void setMenu(SparseArray<List<Dish>> menu) {
         this.menu = menu;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name + ": " + address + " (" + location + ") " + "\n" + menu;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Restaurant castedObject = (Restaurant) obj;
+        if (castedObject.getName().equals(name))
+            return true;
+        else
+            return false;
     }
 }

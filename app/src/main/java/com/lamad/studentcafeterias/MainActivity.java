@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.json.JSONException;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -18,16 +20,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        final RequestFromServer requestFromServer = new RequestFromServer();
-
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                
-            }
-        }
-
     }
 
     @Override

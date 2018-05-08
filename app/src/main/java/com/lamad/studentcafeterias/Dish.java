@@ -4,14 +4,14 @@ import java.util.List;
 
 public class Dish {
     private List<String> items;
-    private float price;
+    private double price;
 
-    public Dish(List<String> items, float price) {
+    public Dish(List<String> items, double price) {
         this.items = items;
         this.price = price;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -23,7 +23,7 @@ public class Dish {
         this.items = items;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }

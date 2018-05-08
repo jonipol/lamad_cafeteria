@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="showOnMap">Show on Map</string>
     <string name="title_activity_maps">Map</string>
+    <string name="jsonReadError">Error in reading the JSON</string>
+    <string name="jsonObjError">Error in changing parsing JSON</string>
 </resources>
