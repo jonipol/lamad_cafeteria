@@ -1,30 +1,39 @@
 package com.lamad.studentcafeterias;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ExpandableListAdapter extends BaseExpandableListAdapter {
+public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private List<Restaurant> dataList;
+    private ExpandableListView componentsExpView;
+    private ComponentsExpandableListAdapter listAdapter;
+    private FragmentManager fragmentManager;
 
 
-    public ExpandableListAdapter(Context context, List<Restaurant> dataList) {
+    public ExpandableRestaurantListAdapter(Context context, List<Restaurant> dataList, FragmentManager fragmentManager) {
         this.context = context;
         this.dataList = dataList;
+        this.fragmentManager = fragmentManager;
     }
 
-    /*
-        Gets the restaurant object. If the restaurant tab is changed to consist of
-        multiple children this and getGroup methods have to be changed.
-     */
     @Override
     public Object getChild(int groupPosition, int childPosition) {
         return getGroup(groupPosition);
@@ -50,11 +59,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return groupPosition;
     }
 
+
     @Override
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
-        Restaurant restaurant = (Restaurant) getChild(groupPosition, childPosition);
+        final Restaurant restaurant = (Restaurant) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) this.context
@@ -68,18 +78,44 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView linkTextView = convertView.findViewById(R.id.listLink);
         linkTextView.setText(restaurant.getLink());
 
+        Button viewMenuButton = convertView.findViewById(R.id.viewMenuButton);
+        viewMenuButton.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+//                  Intent intent = new Intent(context, MenuListActivity.class);
+//                  intent.putExtra("restaurant", restaurant);
+//                  context.startActivity(intent);
+                  Fragment newFragment = new ComponentsListFragment();
+                  Bundle bundle = new Bundle();
+                  bundle.putSerializable("restaurant", restaurant);
+                  newFragment.setArguments(bundle);
+                  FragmentTransaction transaction = fragmentManager.beginTransaction();
+                  transaction.replace(R.id.fragmentPlaceHolder, newFragment);
+                  transaction.addToBackStack(null);
+                  transaction.commit();
+              }
+          });
+
+
+
         /* Handle populating the menu */
-
-
-
+//        componentsExpView = convertView.findViewById(R.id.componentsExpandableListView);
+//        componentsExpView.setAdapter(new ComponentsExpandableListAdapter(context, restaurant));
+//        convertView.findViewById(R.id.componentsExpandableListView);
+//        // Listview Group expanded listener
+//        componentsExpView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+//
+//            @Override
+//            public void onGroupExpand(int groupPosition) {
+//                Toast.makeText(context,
+//                        "Expanded",
+//                        Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         return convertView;
     }
 
-    /*
-        If restaurants are chosen to be shown on multiple levels eg. Name -> address, link, menu -> monday tuesday..
-        Change this method.
-     */
     @Override
     public int getChildrenCount(int groupPosition) {
         return 1;

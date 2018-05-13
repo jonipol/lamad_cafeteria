@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Student Cafeterias</string>
+    <string name="action_settings">Asetukset</string>
+    <string name="showOnMap">Näytä kartalla</string>
+    <string name="title_activity_maps">Kartta</string>
+    <string name="jsonReadError">Vrhe JSON tiedoston lukemisessa</string>
+    <string name="jsonObjError">Virhe JSON parsimisessa</string>
+
+    <string name="monday">Maanantai</string>
+    <string name="tuesday">Tiistai</string>
+    <string name="wednesday">Keskiviikko</string>
+    <string name="thursday">Torstai</string>
+    <string name="friday">Perjantai</string>
+    <string name="saturday">Lauantai</string>
+    <string name="sunday">Sunnuntai</string>
+
+
+</resources>

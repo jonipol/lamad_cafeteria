@@ -73,7 +73,7 @@ public class JSONParser {
 
     private static Dish readMenu(JsonReader reader) throws IOException {
         List<String> components = null;
-        double price = 0;
+        String price = null;
 
         reader.beginObject();
         while (reader.hasNext()) {
@@ -81,7 +81,7 @@ public class JSONParser {
             if (id.equals("fin"))
                 components = readComponents(reader);
             else if (id.equals("price"))
-                price = reader.nextDouble();
+                price = reader.nextString();
             else
                 reader.skipValue();
         }

@@ -2,9 +2,8 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-
     >
 
     <TextView
@@ -21,40 +20,35 @@
         android:layout_gravity="center"
         android:gravity="fill"/>
 
-    <GridLayout
+    <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/listGrid"
-        android:columnCount="2"
-        >
+        android:layout_height="match_parent"
+        android:id="@+id/viewMenuButton"
+        android:text="@string/toMenuButton"
 
-        <TextView
-            android:id="@+id/menuItem"
-            android:layout_columnWeight="2"
-            android:layout_gravity="center"
-            android:gravity="fill"
-            />
+        />
 
-        <TextView
-            android:id="@+id/listPrice"
-            android:layout_columnWeight="1"
-            android:layout_gravity="center"
-            android:gravity="fill"
-            />
-
-    </GridLayout>
+    <!--<ExpandableListView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:id="@+id/componentsExpandableListView"-->
+        <!--android:groupIndicator="@null"-->
+        <!--/>-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+    <!-- Create map button -->
 
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/showOnMapButton"-->
-            <!--/>-->
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/showOnMapButton"
+            android:text="TEST"
+            />
 
         <!--<Button-->
             <!--android:layout_width="wrap_content"-->

@@ -2,11 +2,13 @@ package com.lamad.studentcafeterias;
 
 import android.graphics.Bitmap;
 import android.util.SparseArray;
+
+import java.io.Serializable;
 import java.util.List;
 
 import com.google.android.gms.maps.model.LatLng;
 
-public class Restaurant {
+public class Restaurant implements Serializable{
 
     private Bitmap image;
     private String name;
@@ -104,7 +106,7 @@ public class Restaurant {
     @Override
     public boolean equals(Object obj) {
         Restaurant castedObject = (Restaurant) obj;
-        if (castedObject.getName().equals(name))
+        if (castedObject.getName().toUpperCase().equals(name.toUpperCase()))
             return true;
         else
             return false;
