@@ -8,7 +8,7 @@ import java.util.List;
 
 import com.google.android.gms.maps.model.LatLng;
 
-public class Restaurant implements Serializable{
+public class Restaurant implements Serializable {
 
     private Bitmap image;
     private String name;
@@ -49,6 +49,16 @@ public class Restaurant implements Serializable{
         this.location = location;
         this.menu = menus;
     }
+
+    public Restaurant(String name, String address, String link, LatLng location, SparseArray<List<Dish>> menus, Bitmap image) {
+        this.name = name;
+        this.address = address;
+        this.link = link;
+        this.location = location;
+        this.menu = menus;
+        this.image = image;
+    }
+
 
     public String getName() {
         return name;
@@ -103,6 +113,11 @@ public class Restaurant implements Serializable{
         return name + ": " + address + " (" + location + ") " + "\n" + menu;
     }
 
+    /**
+     * Check if the name of the restaurant is the same
+     * @param obj
+     * @return  True - if the names are the same
+     */
     @Override
     public boolean equals(Object obj) {
         Restaurant castedObject = (Restaurant) obj;

@@ -71,9 +71,11 @@ public class ComponentsExpandableListAdapter extends BaseExpandableListAdapter {
         List<Dish> dishesForDay = dataList.get(groupPosition);
 
         TextView componentView = convertView.findViewById(R.id.dishComponent);
+        StringBuilder stringBuilder = new StringBuilder();
         for (String item : dishesForDay.get(childPosition).getItems()) {
-            componentView.setText(item + "\n");
+            stringBuilder.append(item + "\n");
         }
+        componentView.setText(stringBuilder.toString());
 
         TextView priceView = convertView.findViewById(R.id.dishPrice);
         priceView.setText(dishesForDay.get(childPosition).getPrice());
