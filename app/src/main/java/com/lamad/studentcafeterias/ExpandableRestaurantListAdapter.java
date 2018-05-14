@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -96,7 +97,21 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
               }
           });
 
-
+        Button mapButton = convertView.findViewById(R.id.mapButton);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("test");
+                Intent intent = new Intent(context, MapsActivity.class);
+                // TODO: Name, Lat and Lon from certain restaurant
+                double lat = 62.598026;
+                double lon = 29.743717;
+                String restaurantName = "Title";
+                intent.putExtra("LATITUDE", lat);
+                intent.putExtra("LONGITUDE", lon);
+                intent.putExtra("RESTAURANT_NAME", restaurantName);
+                context.startActivity(intent);
+            }});
 
         /* Handle populating the menu */
 //        componentsExpView = convertView.findViewById(R.id.componentsExpandableListView);
