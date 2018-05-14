@@ -1,12 +1,24 @@
 package com.lamad.studentcafeterias;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.location.Location;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -22,6 +34,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        ImageButton ib = this.findViewById(R.id.backButton);
+        ib.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
 
@@ -37,10 +57,60 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        double lat = getIntent().getDoubleExtra("LATITUDE", 0);
+        double lon = getIntent().getDoubleExtra("LONGITUDE", 0);
+        String restaurantName = getIntent().getStringExtra("RESTAURANT_NAME");
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(62.598026, 29.743717);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng restaurantCoordinates = new LatLng(lat, lon);
+        mMap.addMarker(new MarkerOptions().position(restaurantCoordinates).title(restaurantName));
+        //mMap.animateCamera(CameraUpdateFactory.zoomTo(17.0f));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(restaurantCoordinates,16.0f));
+
+        /**
+         * Codes below are from http://www.zoftino.com/android-show-current-location-on-map-example
+         */
+        enableMyLocationIfPermitted();
+        mMap.setOnMyLocationButtonClickListener(onMyLocationButtonClickListener);
+
     }
+
+    private void enableMyLocationIfPermitted() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_FINE_LOCATION},
+                    1);
+        } else if (mMap != null) {
+            mMap.setMyLocationEnabled(true);
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    enableMyLocationIfPermitted();
+                } else {
+                    // TODO: Do something if no permission is granted
+                    System.out.println("Permission needed");
+                }
+            }
+
+        }
+    }
+
+    private GoogleMap.OnMyLocationButtonClickListener onMyLocationButtonClickListener =
+            new GoogleMap.OnMyLocationButtonClickListener() {
+                @Override
+                public boolean onMyLocationButtonClick() {
+                    //mMap.setMinZoomPreference(15);
+                    return false;
+                }
+            };
 }
+

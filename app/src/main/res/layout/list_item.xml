@@ -28,6 +28,7 @@
 
         />
 
+
     <!--<ExpandableListView-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"-->
@@ -50,11 +51,20 @@
             android:text="TEST"
             />
 
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/directionsButton"-->
-            <!--/>-->
+        <!--<ImageButton
+            android:id="@+id/mapImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/map_icon"/>-->
+
+        <!--TODO: Create imagebutton instead of button. -->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mapButton"
+            android:text="Map"
+            />
+        <!--Image from: https://www.iconfinder.com/icons/285662/map_icon#size=256-->
     </LinearLayout>
 
 </LinearLayout>
