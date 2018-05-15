@@ -13,7 +13,9 @@ public class JSONParser {
     public static List<Restaurant> readJsonStream(InputStream inputStream) throws IOException {
         JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
         try {
-            return readRestaurantArray(reader);
+            List<Restaurant> listOfRestaurant = readRestaurantArray(reader);
+            System.out.println(listOfRestaurant);
+            return listOfRestaurant;
         } finally {
             reader.close();
         }
@@ -99,4 +101,5 @@ public class JSONParser {
         reader.endArray();
         return components;
     }
+
 }

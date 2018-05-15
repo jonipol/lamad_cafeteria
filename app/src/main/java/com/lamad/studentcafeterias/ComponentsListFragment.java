@@ -1,7 +1,9 @@
 package com.lamad.studentcafeterias;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +37,25 @@ public class ComponentsListFragment extends Fragment {
             }
         });
 
+        // Not working codes for toolbar. Would be easiest way if worked
+        //ActionBar actionBar = getActivity().getActionBar();
+        //actionBar.setDisplayHomeAsUpEnabled(true);
+
+        /* Custom toolbar. Works when also xml is uncommented
+        Toolbar toolbar = view.findViewById(R.id.toolbar22);
+        System.out.println("toolbar" + toolbar);
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+
+        */
 
         return view;
     }
+
 
 }
