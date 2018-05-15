@@ -2,6 +2,7 @@ package com.lamad.studentcafeterias;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,6 @@ public class ComponentsListFragment extends Fragment {
                 previousItem = groupPosition;
             }
         });
-
 
         return view;
     }

@@ -17,12 +17,13 @@ import cz.msebera.android.httpclient.Header;
 
 public class RequestFromServer {
 
+    private static final String BASE_URL = "http://cs.uef.fi/~jannkar/lamad_server/";
     JSONArray cafe;
 
     // method to request menus from the server
     public void getMenus() throws JSONException {
         Log.v("REQUEST", "getMenu");
-        ServerConnection.get("studentCafeteriaMenus.json", null, new JsonHttpResponseHandler() {
+        ServerConnection.get(BASE_URL + "studentCafeteriaMenus.json", null, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -35,6 +36,7 @@ public class RequestFromServer {
             public void onSuccess(int statusCode, Header[] headers, JSONArray menus) {
                 // Do something with the response
                 System.out.println(menus);
+
             }
         });
     }
@@ -43,7 +45,7 @@ public class RequestFromServer {
     public void getCafeterias() throws JSONException {
         RequestParams params = new RequestParams();
         params.put("get_cafeterias", "");
-        ServerConnection.get("index.php", params, new JsonHttpResponseHandler() {
+        ServerConnection.get(BASE_URL + "requests.php", params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
@@ -55,6 +57,7 @@ public class RequestFromServer {
             public void onSuccess(int statusCode, Header[] headers, JSONArray cafeterias) {
                 // Do something with the response
                 System.out.println(cafeterias);
+                cafe = cafeterias;
             }
         });
     }

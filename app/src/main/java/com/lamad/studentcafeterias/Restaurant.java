@@ -12,7 +12,8 @@ public class Restaurant implements Serializable {
 
     private Bitmap image;
     private String name;
-    private LatLng location;
+    private double latitude;
+    private double longitude;
     private String link;
     private String address;
     private SparseArray<List<Dish>> menu; // SparseArray is more efficient than HashMap when pairing objects to Integers
@@ -34,27 +35,21 @@ public class Restaurant implements Serializable {
         this.menu = menus;
     }
 
-    /**
-     *
-     * @param name
-     * @param address
-     * @param link
-     * @param location
-     * @param menus
-     */
-    public Restaurant(String name, String address, String link, LatLng location, SparseArray<List<Dish>> menus) {
+    public Restaurant(String name, String address, String link, double latitude, double longitude, SparseArray<List<Dish>> menus) {
         this.name = name;
         this.address = address;
         this.link = link;
-        this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.menu = menus;
     }
 
-    public Restaurant(String name, String address, String link, LatLng location, SparseArray<List<Dish>> menus, Bitmap image) {
+    public Restaurant(String name, String address, String link,  double latitude, double longitude, SparseArray<List<Dish>> menus, Bitmap image) {
         this.name = name;
         this.address = address;
         this.link = link;
-        this.location = location;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.menu = menus;
         this.image = image;
     }
@@ -68,8 +63,12 @@ public class Restaurant implements Serializable {
         return image;
     }
 
-    public LatLng getLocation() {
-        return location;
+    public double getLatitude(){
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
     }
 
     public String getAddress() {
@@ -88,8 +87,12 @@ public class Restaurant implements Serializable {
         this.image = image;
     }
 
-    public void setLocation(LatLng location) {
-        this.location = location;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public void setAddress(String address) {
@@ -110,7 +113,7 @@ public class Restaurant implements Serializable {
 
     @Override
     public String toString() {
-        return name + ": " + address + " (" + location + ") " + "\n" + menu;
+        return name + ": " + address + " (" + latitude + " | " + longitude + ") " + "\n" + menu;
     }
 
     /**

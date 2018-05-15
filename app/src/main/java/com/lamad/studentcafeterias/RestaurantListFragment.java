@@ -32,21 +32,21 @@ public class RestaurantListFragment extends Fragment {
         expandableListView = view.findViewById(R.id.expendableRestaurantListView);
         populateDataList();
 
-        final RequestFromServer requestFromServer = new RequestFromServer();
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                try{
-                    requestFromServer.getCafeterias();
-                    requestFromServer.getMenus();
-                }
-                catch (JSONException e){
-                    e.printStackTrace();
-                }
-            }
-        };
-        Handler h = new Handler();
-        h.postDelayed(runnable, 1000);  // Timeout for getting answer from the server
+//        final RequestFromServer requestFromServer = new RequestFromServer();
+//        Runnable runnable = new Runnable() {
+//            @Override
+//            public void run() {
+//                try{
+//                    requestFromServer.getCafeterias();
+//                    requestFromServer.getMenus();
+//                }
+//                catch (JSONException e){
+//                    e.printStackTrace();
+//                }
+//            }
+//        };
+//        Handler h = new Handler();
+//        h.postDelayed(runnable, 1000);  // Timeout for getting answer from the server
 
 
         listAdapter = new ExpandableRestaurantListAdapter(this.getContext(), dataList, getFragmentManager());
