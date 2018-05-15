@@ -43,7 +43,7 @@ public class RequestFromServer {
     public void getCafeterias() throws JSONException {
         RequestParams params = new RequestParams();
         params.put("get_cafeterias", "");
-        ServerConnection.get("index.php", params, new JsonHttpResponseHandler() {
+        ServerConnection.get("requests.php", params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
