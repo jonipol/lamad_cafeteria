@@ -98,11 +98,12 @@ public class RestaurantListFragment extends Fragment {
         }
     }
 
-    public static void parseMenus(JSONArray jsonArray) {
-        try {
-            dishList.addAll(JSONParser.readDishJson(jsonArray));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
+    //public static void parseMenus(JSONArray jsonArray) {
+    //    try {
+
+            //dishList.addAll(JSONParser.readDishJson(jsonArray));
+    //    } catch (JSONException e) {
+    //        e.printStackTrace();
+    //    }
+    //}
 }

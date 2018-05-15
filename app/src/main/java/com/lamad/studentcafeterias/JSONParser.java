@@ -1,5 +1,7 @@
 package com.lamad.studentcafeterias;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.JsonReader;
 import android.util.SparseArray;
 
@@ -24,7 +26,8 @@ public class JSONParser {
             double longitude = jsonObject.getDouble("longtitude");
             String webpage = jsonObject.getString("webpage");
             String address = jsonObject.getString("address");
-            restaurantList.add(new Restaurant(name, address, webpage, latitude, longitude));
+            String imageInString = jsonObject.getString("image_file");
+            restaurantList.add(new Restaurant(name, address, webpage, latitude, longitude, new SparseArray<List<Dish>>(), imageInString));
         }
         return restaurantList;
     }

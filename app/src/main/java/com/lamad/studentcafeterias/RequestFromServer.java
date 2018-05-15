@@ -35,7 +35,7 @@ public class RequestFromServer {
             public void onSuccess(int statusCode, Header[] headers, JSONArray menus) {
                 // Do something with the response
                 System.out.println(menus);
-                RestaurantListFragment.parseMenus(menus);
+                //RestaurantListFragment.parseMenus(menus);
             }
         });
     }

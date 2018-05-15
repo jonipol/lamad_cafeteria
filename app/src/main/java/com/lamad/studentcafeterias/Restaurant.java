@@ -10,7 +10,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 public class Restaurant implements Serializable {
 
-    private Bitmap image;
+    private String image;
     private String name;
     private double latitude;
     private double longitude;
@@ -52,7 +52,7 @@ public class Restaurant implements Serializable {
         this.menu = menus;
     }
 
-    public Restaurant(String name, String address, String link,  double latitude, double longitude, SparseArray<List<Dish>> menus, Bitmap image) {
+    public Restaurant(String name, String address, String link,  double latitude, double longitude, SparseArray<List<Dish>> menus, String image) {
         this.name = name;
         this.address = address;
         this.link = link;
@@ -67,7 +67,7 @@ public class Restaurant implements Serializable {
         return name;
     }
 
-    public Bitmap getImage() {
+    public String getImageString() {
         return image;
     }
 
@@ -91,7 +91,7 @@ public class Restaurant implements Serializable {
         return menu;
     }
 
-    public void setImage(Bitmap image) {
+    public void setImageString(String image) {
         this.image = image;
     }
 
