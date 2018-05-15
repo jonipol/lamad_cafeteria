@@ -24,6 +24,18 @@ public class ComponentsListFragment extends Fragment {
         listAdapter = new ComponentsExpandableListAdapter(this.getContext(), restaurant);
         expandableListView.setAdapter(listAdapter);
 
+        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            int previousItem = -1;
+
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if (groupPosition != previousItem)
+                    expandableListView.collapseGroup(previousItem);
+                previousItem = groupPosition;
+            }
+        });
+
+
         return view;
     }
 

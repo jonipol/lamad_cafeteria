@@ -24,9 +24,8 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private List<Restaurant> dataList;
-    private ExpandableListView componentsExpView;
-    private ComponentsExpandableListAdapter listAdapter;
     private FragmentManager fragmentManager;
+    private int lastExpandedPosition = -1;
 
 
     public ExpandableRestaurantListAdapter(Context context, List<Restaurant> dataList, FragmentManager fragmentManager) {
@@ -83,9 +82,6 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
         viewMenuButton.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-//                  Intent intent = new Intent(context, MenuListActivity.class);
-//                  intent.putExtra("restaurant", restaurant);
-//                  context.startActivity(intent);
                   Fragment newFragment = new ComponentsListFragment();
                   Bundle bundle = new Bundle();
                   bundle.putSerializable("restaurant", restaurant);
@@ -113,21 +109,6 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
                 context.startActivity(intent);
             }});
 
-        /* Handle populating the menu */
-//        componentsExpView = convertView.findViewById(R.id.componentsExpandableListView);
-//        componentsExpView.setAdapter(new ComponentsExpandableListAdapter(context, restaurant));
-//        convertView.findViewById(R.id.componentsExpandableListView);
-//        // Listview Group expanded listener
-//        componentsExpView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-//
-//            @Override
-//            public void onGroupExpand(int groupPosition) {
-//                Toast.makeText(context,
-//                        "Expanded",
-//                        Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
         return convertView;
     }
 
@@ -135,6 +116,7 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
     public int getChildrenCount(int groupPosition) {
         return 1;
     }
+
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded,

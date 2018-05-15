@@ -52,6 +52,17 @@ public class RestaurantListFragment extends Fragment {
         listAdapter = new ExpandableRestaurantListAdapter(this.getContext(), dataList, getFragmentManager());
         expandableListView.setAdapter(listAdapter);
 
+        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            int previousItem = -1;
+
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if (groupPosition != previousItem)
+                    expandableListView.collapseGroup(previousItem);
+                previousItem = groupPosition;
+            }
+        });
+
         return view;
     }
 
@@ -60,7 +71,7 @@ public class RestaurantListFragment extends Fragment {
         // TODO: Get the data from server
         dataList = new ArrayList<>();
         try {
-            InputStream inputStream = getContext().getAssets().open("amicaMenu.txt");
+            InputStream inputStream = getContext().getAssets().open("studentCafeteriaMenus.txt");
             // TODO: Check if the restaurant is already in the memory.
             // Create restaurants
             Restaurant aura = new Restaurant("Aura", "address", "link");

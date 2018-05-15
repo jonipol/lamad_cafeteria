@@ -11,9 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/headerImageView"
-        android:contentDescription="Restaurant Image"
-        android:layout_gravity="fill"
+        android:layout_gravity="start"
         android:layout_columnWeight="1"
+        android:paddingStart="@dimen/list_header_padding"
         />
 
     <TextView
@@ -30,9 +30,10 @@
         android:id="@+id/headerDistance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="fill"
+        android:gravity="end"
+        android:layout_gravity="center_vertical"
         android:layout_columnWeight="1"
-        android:gravity="center"
+        android:paddingEnd="@dimen/list_header_padding"
 
         />
 

@@ -12,8 +12,9 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_gravity="center"
-        android:gravity="center"
+        android:gravity="start"
         android:layout_weight="1"
+        android:paddingStart="@dimen/list_item_padding"
         />
 
     <TextView
@@ -21,8 +22,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:gravity="center"
+        android:gravity="end"
         android:layout_weight="2"
+        android:paddingEnd="@dimen/list_item_padding"
         />
 
 </LinearLayout>
