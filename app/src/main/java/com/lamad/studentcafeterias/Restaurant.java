@@ -123,18 +123,4 @@ public class Restaurant implements Serializable {
     public String toString() {
         return name + ": " + address + " (" + latitude + " | " + longitude + ") " + "\n" + menu;
     }
-
-    /**
-     * Check if the name of the restaurant is the same
-     * @param obj
-     * @return  True - if the names are the same
-     */
-    @Override
-    public boolean equals(Object obj) {
-        Restaurant castedObject = (Restaurant) obj;
-        if (castedObject.getName().toUpperCase().equals(name.toUpperCase()))
-            return true;
-        else
-            return false;
-    }
 }

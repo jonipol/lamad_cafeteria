@@ -1,6 +1,7 @@
 package com.lamad.studentcafeterias;
 
 import android.util.JsonReader;
+import android.util.Log;
 import android.util.SparseArray;
 
 import org.json.JSONArray;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JSONParser {
+    private static final String TAG = "JSONPARSER";
 
     public static List<Restaurant> readRestaurantJson(JSONArray jsonArray) throws JSONException {
         List<Restaurant> restaurantList = new ArrayList<>();
@@ -29,111 +31,47 @@ public class JSONParser {
         return restaurantList;
     }
 
-    public static List<SparseArray<List<Dish>>> readDishJson(JSONArray jsonArray) throws JSONException {
-        List<SparseArray<List<Dish>>> menus = new ArrayList<>();
+    public static void readDishJson(JSONArray jsonArray) throws JSONException {
+        List<Restaurant> dataList = RestaurantListFragment.dataList;
         for (int i = 0; i < jsonArray.length(); i++) {
+            Restaurant restaurant = null;
             SparseArray<List<Dish>> restaurantMenus = new SparseArray<>();
-            for (int j = 0; j < jsonArray.length(); j++) {
-                List<Dish> restaurantMenu = new ArrayList<>();
-
+            JSONObject restaurantJsonObject = jsonArray.getJSONObject(i);
+            String restaurantName = restaurantJsonObject.getString("restaurantName");
+            // Because Carelia has that "opiskelijaravintola" infront of its name.
+            // TODO: Better solution to Carelias name. This solution breaks all restaurant
+            // TODO: names that have two or more words in it.
+            if (restaurantName.split(" ").length > 1) {
+                restaurantName = restaurantName.split(" ")[1];
+                Log.v("TAAG", restaurantName);
+            }
+            // Check if the restaurant can be found from database
+            for (int j = 0; j < dataList.size(); j++) {
+                if (dataList.get(j).getName().equals(restaurantName))
+                    restaurant = dataList.get(j);
             }
 
+            if (restaurant != null) {     // Restaurant is found from database
+                JSONArray weeklyMenuJsonArray = restaurantJsonObject.getJSONArray("menus");
+                for (int k = 0; k < weeklyMenuJsonArray.length(); k++) {
+                    JSONArray dailyMenu = weeklyMenuJsonArray.getJSONArray(k);
+                    List<Dish> dishList = new ArrayList<>();
+                    for (int l = 0; l < dailyMenu.length(); l++) {
+                        JSONObject singleDish = dailyMenu.getJSONObject(l);
+                        JSONArray componentsJson = singleDish.getJSONArray("fin");
+                        List<String> componentList = new ArrayList<>();
+                        for (int m = 0; m < componentsJson.length(); m++) {
+                            componentList.add(componentsJson.getString(m));
+                        }
+                        dishList.add(new Dish(componentList, singleDish.getString("price")));
+                    }
+                    restaurantMenus.append(k, dishList);
+                }
+            } else
+                Log.wtf(TAG, "Restaurant " + restaurantName + " is missing from cafeterias table");
+
+            restaurant.setMenu(restaurantMenus);
         }
-        return menus;
+        RestaurantListFragment.dataList = dataList;
     }
-
-
-
-    public static List<Restaurant> readJsonStream(InputStream inputStream) throws IOException {
-        JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
-        try {
-            List<Restaurant> listOfRestaurant = readRestaurantArray(reader);
-            System.out.println(listOfRestaurant);
-            return listOfRestaurant;
-        } finally {
-            reader.close();
-        }
-    }
-
-    private static List<Restaurant> readRestaurantArray(JsonReader reader) throws IOException {
-        List<Restaurant> restaurants = new ArrayList<>();
-        reader.beginArray();
-        while(reader.hasNext()) {
-            restaurants.add(readRestaurant(reader));
-        }
-        reader.endArray();
-        return restaurants;
-    }
-
-    private static Restaurant readRestaurant(JsonReader reader) throws IOException {
-        String name = null;
-        SparseArray<List<Dish>> menus = null;
-
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String id = reader.nextName();
-            if (id.equals("restaurantName"))
-                name = reader.nextString();
-            else if (id.equals("menus"))
-                menus = readMenuOfWeek(reader);
-            else
-                reader.skipValue();
-        }
-        reader.endObject();
-        return new Restaurant(name, menus);
-    }
-
-    private static SparseArray<List<Dish>> readMenuOfWeek(JsonReader reader) throws IOException {
-        SparseArray<List<Dish>> menus = new SparseArray<>();
-        int numberOfDay = 0;
-
-        reader.beginArray();
-        while (reader.hasNext()) {
-            menus.append(numberOfDay, readMenuOFDay(reader));
-            numberOfDay++;
-        }
-        reader.endArray();
-        return menus;
-    }
-
-    private static List<Dish> readMenuOFDay(JsonReader reader) throws IOException {
-        List<Dish> listOfDishes = new ArrayList<>();
-
-        reader.beginArray();
-        while (reader.hasNext()) {
-            listOfDishes.add(readMenu(reader));
-        }
-        reader.endArray();
-        return listOfDishes;
-    }
-
-    private static Dish readMenu(JsonReader reader) throws IOException {
-        List<String> components = null;
-        String price = null;
-
-        reader.beginObject();
-        while (reader.hasNext()) {
-            String id = reader.nextName();
-            if (id.equals("fin"))
-                components = readComponents(reader);
-            else if (id.equals("price"))
-                price = reader.nextString();
-            else
-                reader.skipValue();
-        }
-        reader.endObject();
-        return new Dish(components, price);
-    }
-
-    private static List<String> readComponents(JsonReader reader) throws IOException {
-        List<String> components = new ArrayList<>();
-
-        reader.beginArray();
-        while (reader.hasNext()) {
-            components.add(reader.nextString());
-        }
-        reader.endArray();
-        return components;
-    }
-
 }
