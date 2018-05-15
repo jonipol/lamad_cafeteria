@@ -25,7 +25,6 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<Restaurant> dataList;
     private FragmentManager fragmentManager;
-    private int lastExpandedPosition = -1;
 
 
     public ExpandableRestaurantListAdapter(Context context, List<Restaurant> dataList, FragmentManager fragmentManager) {
@@ -73,10 +72,10 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
         }
 
         TextView locationTextView = convertView.findViewById(R.id.listLocation);
-        locationTextView.setText(restaurant.getAddress());
+        locationTextView.setText(String.format(context.getString(R.string.address_field),restaurant.getAddress()));
 
         TextView linkTextView = convertView.findViewById(R.id.listLink);
-        linkTextView.setText(restaurant.getLink());
+        linkTextView.setText(String.format(context.getString(R.string.link_field), restaurant.getLink()));
 
         Button viewMenuButton = convertView.findViewById(R.id.viewMenuButton);
         viewMenuButton.setOnClickListener(new View.OnClickListener() {

@@ -12,7 +12,10 @@
         android:id="@+id/listLocation"
         android:layout_gravity="center"
         android:gravity="fill"
-        android:paddingStart="@dimen/list_item_padding"/>
+        android:paddingStart="@dimen/list_item_padding"
+        android:paddingEnd="0dp"
+        android:text="@string/address_field"
+        android:textSize="@dimen/list_item_text_size"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -20,35 +23,35 @@
         android:id="@+id/listLink"
         android:layout_gravity="center"
         android:gravity="fill"
-        android:paddingStart="@dimen/list_item_padding"/>
+        android:paddingStart="@dimen/list_item_padding"
+        android:paddingEnd="0dp"
+        android:text="@string/link_field"
+        android:textSize="@dimen/list_item_text_size"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/viewMenuButton"
-        android:text="@string/toMenuButton"
-
-        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
 
-    <!-- Create map button -->
-
-        <!--<ImageButton
-            android:id="@+id/mapImageButton"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/map_icon"/>-->
+            android:id="@+id/viewMenuButton"
+            android:text="@string/toMenuButton"
+            android:textSize="@dimen/list_item_button_text_size"
+            android:textStyle="bold"
+            />
 
-        <!--TODO: Create imagebutton instead of button. -->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/mapButton"
-            android:text="Map"
+            android:text="@string/show_on_map_button"
+            android:background="@drawable/map_icon"
+            android:textSize="@dimen/list_item_button_text_size"
+            android:textStyle="bold"
             />
         <!--Image from: https://www.iconfinder.com/icons/285662/map_icon#size=256-->
     </LinearLayout>

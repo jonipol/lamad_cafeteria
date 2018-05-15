@@ -15,5 +15,8 @@
     <string name="saturday">Saturday</string>
     <string name="sunday">Sunday</string>
 
+    <string name="address_field">Address: %1$s</string>
+    <string name="link_field">Webpage: %1$s</string>
+    <string name="show_on_map_button">Map</string>
 
 </resources>
