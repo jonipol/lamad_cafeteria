@@ -35,12 +35,13 @@ public class Restaurant implements Serializable {
         this.menu = menus;
     }
 
-    public Restaurant(String name, String address, String link, double latitude, double longitude) {
+    public Restaurant(String name, String address, String link, double latitude, double longitude, String image) {
         this.name = name;
         this.address = address;
         this.link = link;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.image = image;
     }
 
     public Restaurant(String name, String address, String link, double latitude, double longitude, SparseArray<List<Dish>> menus) {
@@ -67,7 +68,7 @@ public class Restaurant implements Serializable {
         return name;
     }
 
-    public String getImageString() {
+    public String getImage() {
         return image;
     }
 
@@ -91,7 +92,7 @@ public class Restaurant implements Serializable {
         return menu;
     }
 
-    public void setImageString(String image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -122,19 +123,5 @@ public class Restaurant implements Serializable {
     @Override
     public String toString() {
         return name + ": " + address + " (" + latitude + " | " + longitude + ") " + "\n" + menu;
-    }
-
-    /**
-     * Check if the name of the restaurant is the same
-     * @param obj
-     * @return  True - if the names are the same
-     */
-    @Override
-    public boolean equals(Object obj) {
-        Restaurant castedObject = (Restaurant) obj;
-        if (castedObject.getName().toUpperCase().equals(name.toUpperCase()))
-            return true;
-        else
-            return false;
     }
 }
