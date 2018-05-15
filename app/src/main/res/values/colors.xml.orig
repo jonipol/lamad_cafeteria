@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<<<<<<< HEAD
+    <color name="colorPrimary">#ff5722</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="splash_background_color">#ff5722</color>
+=======
+    <color name="colorPrimary">#ef5722</color>
+    <color name="colorPrimaryDark">#e44d1d</color>
+    <color name="colorAccent">#ffa084</color>
+>>>>>>> a0debb0cd5ecc9372719b68ff513d36438db7cea
+</resources>

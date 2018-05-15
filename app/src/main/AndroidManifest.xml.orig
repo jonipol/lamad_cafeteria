@@ -29,8 +29,13 @@
             android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+<<<<<<< HEAD
                 <category android:name="android.intent.category.DEFAULT" />
+=======
+
+                <category android:name="android.intent.category.LAUNCHER" />
                 <!-- Icon from https://www.iconfinder.com/icons/379338/dome_food_icon#size=256-->
+>>>>>>> cbf6eb6d05f5cb65cec8e6a65c6048d2a7fae774
             </intent-filter>
         </activity>
         <!--
