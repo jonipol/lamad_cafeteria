@@ -26,7 +26,8 @@ public class JSONParser {
             double longitude = jsonObject.getDouble("longtitude");
             String webpage = jsonObject.getString("webpage");
             String address = jsonObject.getString("address");
-            restaurantList.add(new Restaurant(name, address, webpage, latitude, longitude));
+            String image = jsonObject.getString("image_file");
+            restaurantList.add(new Restaurant(name, address, webpage, latitude, longitude, image));
         }
         return restaurantList;
     }
