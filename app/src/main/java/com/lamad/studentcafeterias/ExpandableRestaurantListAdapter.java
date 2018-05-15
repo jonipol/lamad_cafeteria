@@ -133,14 +133,10 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
 
         ImageView imageView = convertView
                 .findViewById(R.id.headerImageView);
-        String imageInString = restaurant.getImageString();
-        //imageView.setImageBitmap(restaurant.getImage()); // Commented for testing purposes
+        String imageInString = restaurant.getImage();
+        String imageName = imageInString.substring(0, imageInString.length() - 4); //Removing the .jpg ending
+        imageView.setImageResource(context.getResources().getIdentifier(imageName, "drawable", context.getPackageName()));
 
-        // Not working yet. Should add image from drawable, using the string format of image file name
-        //System.out.println(context.getResources().getIdentifier(imageInString, "drawable", context.getPackageName()));
-        //imageView.setImageResource(context.getResources().getIdentifier(imageInString, "drawable", context.getPackageName()));
-
-        imageView.setImageResource(R.mipmap.ic_launcher); //TODO
 
         TextView nameView = convertView
                 .findViewById(R.id.headerLabel);
