@@ -17,10 +17,13 @@ import cz.msebera.android.httpclient.Header;
 
 public class RequestFromServer {
 
+    JSONArray cafe;
 
     // method to request menus from the server
     public void getMenus() throws JSONException {
-        ServerConnection.get("amicaMenu.json", null, new JsonHttpResponseHandler() {
+        Log.v("REQUEST", "getMenu");
+        ServerConnection.get("studentCafeteriaMenus.json", null, new JsonHttpResponseHandler() {
+
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
