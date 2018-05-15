@@ -18,7 +18,6 @@ import cz.msebera.android.httpclient.Header;
 public class RequestFromServer {
 
     private static final String BASE_URL = "http://cs.uef.fi/~jannkar/lamad_server/";
-    JSONArray cafe;
 
     // method to request menus from the server
     public void getMenus() throws JSONException {
@@ -36,7 +35,7 @@ public class RequestFromServer {
             public void onSuccess(int statusCode, Header[] headers, JSONArray menus) {
                 // Do something with the response
                 System.out.println(menus);
-
+                RestaurantListFragment.parseMenus(menus);
             }
         });
     }
@@ -57,7 +56,7 @@ public class RequestFromServer {
             public void onSuccess(int statusCode, Header[] headers, JSONArray cafeterias) {
                 // Do something with the response
                 System.out.println(cafeterias);
-                cafe = cafeterias;
+                RestaurantListFragment.parseCafeterias(cafeterias);
             }
         });
     }

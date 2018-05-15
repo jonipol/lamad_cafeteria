@@ -35,6 +35,14 @@ public class Restaurant implements Serializable {
         this.menu = menus;
     }
 
+    public Restaurant(String name, String address, String link, double latitude, double longitude) {
+        this.name = name;
+        this.address = address;
+        this.link = link;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     public Restaurant(String name, String address, String link, double latitude, double longitude, SparseArray<List<Dish>> menus) {
         this.name = name;
         this.address = address;

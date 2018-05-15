@@ -35,7 +35,6 @@ public class ComponentsListFragment extends Fragment {
                 previousItem = groupPosition;
             }
         });
-
         return view;
     }
 

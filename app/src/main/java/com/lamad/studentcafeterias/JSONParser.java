@@ -2,6 +2,11 @@ package com.lamad.studentcafeterias;
 
 import android.util.JsonReader;
 import android.util.SparseArray;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -9,6 +14,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JSONParser {
+
+    public static List<Restaurant> readRestaurantJson(JSONArray jsonArray) throws JSONException {
+        List<Restaurant> restaurantList = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            String name = jsonObject.getString("cafeteria");
+            double latitude = jsonObject.getDouble("latitude");
+            double longitude = jsonObject.getDouble("longtitude");
+            String webpage = jsonObject.getString("webpage");
+            String address = jsonObject.getString("address");
+            restaurantList.add(new Restaurant(name, address, webpage, latitude, longitude));
+        }
+        return restaurantList;
+    }
+
+    public static List<SparseArray<List<Dish>>> readDishJson(JSONArray jsonArray) throws JSONException {
+        List<SparseArray<List<Dish>>> menus = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            SparseArray<List<Dish>> restaurantMenus = new SparseArray<>();
+            for (int j = 0; j < jsonArray.length(); j++) {
+                List<Dish> restaurantMenu = new ArrayList<>();
+
+            }
+
+        }
+        return menus;
+    }
+
+
 
     public static List<Restaurant> readJsonStream(InputStream inputStream) throws IOException {
         JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
