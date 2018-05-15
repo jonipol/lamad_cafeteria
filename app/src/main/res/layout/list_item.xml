@@ -22,13 +22,7 @@
         android:gravity="fill"
         android:paddingStart="@dimen/list_item_padding"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/viewMenuButton"
-        android:text="@string/toMenuButton"
 
-        />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,11 +38,21 @@
             android:src="@drawable/map_icon"/>-->
 
         <!--TODO: Create imagebutton instead of button. -->
+
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:id="@+id/viewMenuButton"
+            android:background="@drawable/menu_icon_ver2"
+
+            />
+
+        <Button
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:id="@+id/mapButton"
-            android:text="Map"
+            android:background="@drawable/map_icon"
+
             />
         <!--Image from: https://www.iconfinder.com/icons/285662/map_icon#size=256-->
     </LinearLayout>
