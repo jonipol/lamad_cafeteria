@@ -41,22 +41,23 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:id="@+id/viewMenuButton"
-            android:background="@drawable/menu_icon_ver2"
-            android:text="@string/toMenuButton"
+            android:background="@drawable/menu_icon_ver2"/>
+            <!--android:text="@string/toMenuButton"
             android:textSize="@dimen/list_item_button_text_size"
-            android:textStyle="bold"
+            android:textStyle="bold"-->
 
-            />
+
 
         <Button
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:id="@+id/mapButton"
+            android:background="@drawable/map_icon"/>
+        
+            <!--android:textSize="@dimen/list_item_button_text_size"
             android:text="@string/show_on_map_button"
-            android:background="@drawable/map_icon"
-            android:textSize="@dimen/list_item_button_text_size"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold"-->
+
         <!--Image from: https://www.iconfinder.com/icons/285662/map_icon#size=256-->
     </LinearLayout>
 
