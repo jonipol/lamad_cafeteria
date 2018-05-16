@@ -37,7 +37,7 @@ public class RestaurantListFragment extends Fragment {
                              Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.list_fragment, container, false);
-
+        dataList = SplashActivity.getDatalist();
         expandableListView = view.findViewById(R.id.expendableRestaurantListView);
 
         // Get distances for the restaurants
@@ -77,13 +77,14 @@ public class RestaurantListFragment extends Fragment {
         return view;
     }
 
-    public static void parseCafeterias(JSONArray jsonArray) {
-        try {
-            dataList.addAll(JSONParser.readRestaurantJson(jsonArray));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void parseCafeterias(JSONArray jsonArray) {
+//        try {
+//            dataList.addAll(JSONParser.readRestaurantJson(jsonArray));
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public static void parseMenus(JSONArray jsonArray) {
         try {
