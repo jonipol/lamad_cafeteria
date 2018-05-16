@@ -1,7 +1,5 @@
 package com.lamad.studentcafeterias;
 
-import android.app.ActionBar;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -16,7 +14,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        // Emergency fix. If not restarted the screen will be blank
+        // TODO: Create more sophisticated solution to resetting the view
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Log.v("MainActivity", "Starting new Frag");

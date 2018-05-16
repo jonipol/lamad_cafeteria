@@ -22,7 +22,6 @@ public class ComponentsExpandableListAdapter extends BaseExpandableListAdapter {
     public ComponentsExpandableListAdapter(Context context, Restaurant data) {
         this.context = context;
         this.dataList = data.getMenu();
-        Log.v("CompExAdapter", "dataListComp: " +  getGroupCount());
         weekdays = new ArrayList<>();
         weekdays.add(context.getString(R.string.monday));
         weekdays.add(context.getString(R.string.tuesday));

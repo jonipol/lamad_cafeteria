@@ -99,13 +99,16 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, MapsActivity.class);
-                // TODO: Name, Lat and Lon from certain restaurant
-                double lat = 62.598026;
-                double lon = 29.743717;
-                String restaurantName = "Title";
-                intent.putExtra("LATITUDE", lat);
-                intent.putExtra("LONGITUDE", lon);
-                intent.putExtra("RESTAURANT_NAME", restaurantName);
+                intent.putExtra("RESTAURANT_NAME", restaurant.getName());
+                intent.putExtra("LATITUDE", restaurant.getLatitude());
+                intent.putExtra("LONGITUDE", restaurant.getLongitude());
+//                // TODO: Name, Lat and Lon from certain restaurant
+//                double lat = 62.598026;
+//                double lon = 29.743717;
+//                String restaurantName = "Title";
+//                intent.putExtra("LATITUDE", lat);
+//                intent.putExtra("LONGITUDE", lon);
+//                intent.putExtra("RESTAURANT_NAME", restaurantName);
                 context.startActivity(intent);
             }});
 

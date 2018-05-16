@@ -60,6 +60,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         double lat = getIntent().getDoubleExtra("LATITUDE", 0);
         double lon = getIntent().getDoubleExtra("LONGITUDE", 0);
         String restaurantName = getIntent().getStringExtra("RESTAURANT_NAME");
+        Log.v("TAG", restaurantName + ": " + lat + " " + lon);
 
         // Add a marker in Sydney and move the camera
         LatLng restaurantCoordinates = new LatLng(lat, lon);
