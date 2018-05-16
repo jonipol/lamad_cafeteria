@@ -7,7 +7,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/map_icon" />
+            android:src="@drawable/ic_food_dome" />
     </item>
 
 </layer-list>

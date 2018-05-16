@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +73,9 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
 
         TextView linkTextView = convertView.findViewById(R.id.listLink);
         linkTextView.setText(String.format(context.getString(R.string.link_field), restaurant.getLink()));
+//        linkTextView.setText(String.format(context.getString(R.string.link_field), Html.fromHtml(
+//                "<a href=" + restaurant.getLink() + ">Link</a> ")));
+//        linkTextView.setMovementMethod(LinkMovementMethod.getInstance());
 
         Button viewMenuButton = convertView.findViewById(R.id.viewMenuButton);
         viewMenuButton.setOnClickListener(new View.OnClickListener() {

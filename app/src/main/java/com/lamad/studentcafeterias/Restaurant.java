@@ -1,11 +1,13 @@
 package com.lamad.studentcafeterias;
 
+import android.support.annotation.NonNull;
 import android.util.SparseArray;
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.List;
 
 
-public class Restaurant implements Serializable {
+public class Restaurant implements Serializable, Comparable{
 
     private String image;
     private String name;
@@ -130,4 +132,17 @@ public class Restaurant implements Serializable {
     public String toString() {
         return name + ": " + address + " (" + latitude + " | " + longitude + ") " + "\n" + menu;
     }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        Restaurant restaurant = (Restaurant) o;
+        return Double.compare(this.distance, restaurant.getDistance());
+    }
+
+    public static Comparator<Restaurant> RestauranComparator = new Comparator<Restaurant>() {
+        @Override
+        public int compare(Restaurant o1, Restaurant o2) {
+            return o1.compareTo(o2);
+        }
+    };
 }

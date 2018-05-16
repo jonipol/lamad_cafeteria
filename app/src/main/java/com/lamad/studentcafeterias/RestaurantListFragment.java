@@ -1,6 +1,12 @@
 package com.lamad.studentcafeterias;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -16,6 +22,7 @@ import org.json.JSONException;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RestaurantListFragment extends Fragment {
@@ -33,6 +40,17 @@ public class RestaurantListFragment extends Fragment {
 
         expandableListView = view.findViewById(R.id.expendableRestaurantListView);
 
+        // Get distances for the restaurants
+        Location currentLocation = MainActivity.location;
+        System.out.println(currentLocation);
+        if (currentLocation != null) {
+            for (Restaurant restaurant : dataList) {
+                restaurant.setDistance(LocationCalculations.calculateDistance(currentLocation.getLatitude(), currentLocation.getLongitude(), restaurant.getLatitude(), restaurant.getLongitude()));
+            }
+        }
+        // Sort datalist
+        dataList.sort(Restaurant.RestauranComparator);
+
         listAdapter = new ExpandableRestaurantListAdapter(this.getContext(), dataList, getFragmentManager());
         expandableListView.setAdapter(listAdapter);
 
@@ -46,6 +64,15 @@ public class RestaurantListFragment extends Fragment {
                 previousItem = groupPosition;
             }
         });
+
+        // Acquire a reference to the system Location Manager
+        LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+
+        if (getContext().checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            // Register the listener with the Location Manager to receive location updates
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+        }
+
 
         return view;
     }
@@ -65,4 +92,19 @@ public class RestaurantListFragment extends Fragment {
             e.printStackTrace();
         }
     }
+
+    // Define a listener that responds to location updates
+    LocationListener locationListener = new LocationListener() {
+        public void onLocationChanged(Location location) {
+            // Called when a new location is found by the network location provider.
+            MainActivity.location = location;
+            Log.v("LOCATION", " " + location);
+        }
+
+        public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+        public void onProviderEnabled(String provider) {}
+
+        public void onProviderDisabled(String provider) {}
+    };
 }
