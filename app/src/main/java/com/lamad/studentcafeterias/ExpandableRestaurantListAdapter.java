@@ -71,6 +71,8 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
             convertView = inflater.inflate(R.layout.list_item, null);
         }
 
+
+
         TextView locationTextView = convertView.findViewById(R.id.listLocation);
         locationTextView.setText(String.format(context.getString(R.string.address_field),restaurant.getAddress()));
 
@@ -130,8 +132,10 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
 
         ImageView imageView = convertView
                 .findViewById(R.id.headerImageView);
-        //imageView.setImageBitmap(restaurant.getImage()); // Commented for testing purposes
-        imageView.setImageResource(R.mipmap.ic_launcher);
+        String imageInString = restaurant.getImage();
+        String imageName = imageInString.substring(0, imageInString.length() - 4); //Removing the .jpg ending
+        imageView.setImageResource(context.getResources().getIdentifier(imageName, "drawable", context.getPackageName()));
+
 
         TextView nameView = convertView
                 .findViewById(R.id.headerLabel);
