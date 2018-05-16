@@ -14,6 +14,7 @@ public class Restaurant implements Serializable {
     private String link;
     private String address;
     private SparseArray<List<Dish>> menu; // SparseArray is more efficient than HashMap when pairing objects to Integers
+    private double distance;
 
     /**
      * For testing purposes
@@ -115,6 +116,14 @@ public class Restaurant implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 
     @Override

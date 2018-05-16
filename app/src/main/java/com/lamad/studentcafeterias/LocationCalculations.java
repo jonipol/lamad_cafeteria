@@ -13,6 +13,7 @@ import cz.msebera.android.httpclient.Header;
 public class LocationCalculations {
     private final static String TAG = "LocationCalculations";
 
+    static double distance = 0;
     public static double calculateDistance(double originLatitude, double originLongitude,
                                            double destinationLatitude, double destinationLongitude) {
 
@@ -32,6 +33,7 @@ public class LocationCalculations {
                 try {
                     double distance = Double.valueOf(distanceMatrix.getJSONArray("rows").getJSONObject(0).getJSONArray("elements").getJSONObject(0).getJSONObject("distance").getString("value"));
                     Log.v(TAG, "Distance: " + distance);
+                    LocationCalculations.distance = distance;
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Log.e(TAG, "Json parsing error in calculateDistance");
@@ -39,6 +41,6 @@ public class LocationCalculations {
             }
         });
 
-        return 0;
+        return distance;
     }
 }

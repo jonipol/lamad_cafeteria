@@ -11,13 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
-import android.widget.ExpandableListView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
@@ -26,12 +21,12 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
     private List<Restaurant> dataList;
     private FragmentManager fragmentManager;
 
-
     public ExpandableRestaurantListAdapter(Context context, List<Restaurant> dataList, FragmentManager fragmentManager) {
         this.context = context;
         this.dataList = dataList;
         this.fragmentManager = fragmentManager;
     }
+
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
@@ -71,8 +66,6 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
             convertView = inflater.inflate(R.layout.list_item, null);
         }
 
-
-
         TextView locationTextView = convertView.findViewById(R.id.listLocation);
         locationTextView.setText(String.format(context.getString(R.string.address_field),restaurant.getAddress()));
 
@@ -102,13 +95,6 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
                 intent.putExtra("RESTAURANT_NAME", restaurant.getName());
                 intent.putExtra("LATITUDE", restaurant.getLatitude());
                 intent.putExtra("LONGITUDE", restaurant.getLongitude());
-//                // TODO: Name, Lat and Lon from certain restaurant
-//                double lat = 62.598026;
-//                double lon = 29.743717;
-//                String restaurantName = "Title";
-//                intent.putExtra("LATITUDE", lat);
-//                intent.putExtra("LONGITUDE", lon);
-//                intent.putExtra("RESTAURANT_NAME", restaurantName);
                 context.startActivity(intent);
             }});
 
@@ -139,15 +125,13 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
         String imageName = imageInString.substring(0, imageInString.length() - 4); //Removing the .jpg ending
         imageView.setImageResource(context.getResources().getIdentifier(imageName, "drawable", context.getPackageName()));
 
-
         TextView nameView = convertView
                 .findViewById(R.id.headerLabel);
         nameView.setText(restaurant.getName());
 
         TextView distanceView = convertView
                 .findViewById(R.id.headerDistance);
-        distanceView.setText("500m"); // TODO: Calculation of the distance
-
+        distanceView.setText(""); // TODO: Calculation of the distance
 
         return convertView;
     }
