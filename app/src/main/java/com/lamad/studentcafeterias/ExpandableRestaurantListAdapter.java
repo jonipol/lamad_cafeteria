@@ -96,7 +96,6 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("test");
                 Intent intent = new Intent(context, MapsActivity.class);
                 // TODO: Name, Lat and Lon from certain restaurant
                 double lat = 62.598026;

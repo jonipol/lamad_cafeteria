@@ -1,6 +1,5 @@
 package com.lamad.studentcafeterias;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import org.json.JSONException;
 
-public class SplashActivity extends AppCompatActivity implements SplashScreenTask.SplashScreenTaskCallback {
+public class SplashActivity extends AppCompatActivity {
 
     private RequestFromServer requestFromServer = null;
     private final Handler handler = new Handler();
@@ -17,7 +16,7 @@ public class SplashActivity extends AppCompatActivity implements SplashScreenTas
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        handler.postDelayed(startFetchingInBackground, 1000);
+        handler.post(startFetchingInBackground);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
@@ -36,9 +35,4 @@ public class SplashActivity extends AppCompatActivity implements SplashScreenTas
             }
         }
     };
-
-    @Override
-    public void OnSplashScreenTaskCompleted() {
-
-    }
 }

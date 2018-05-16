@@ -28,9 +28,9 @@
         <activity
             android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <!-- Icon from https://www.iconfinder.com/icons/379338/dome_food_icon#size=256-->
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.HOME" />
+                 <!--Icon from https://www.iconfinder.com/icons/379338/dome_food_icon#size=256-->
             </intent-filter>
         </activity>
         <!--

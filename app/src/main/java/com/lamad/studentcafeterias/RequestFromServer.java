@@ -21,7 +21,6 @@ public class RequestFromServer {
 
     // method to request menus from the server
     public void getMenus() throws JSONException {
-        Log.v("REQUEST", "getMenu");
         ServerConnection.get(BASE_URL + "studentCafeteriaMenus.json", null, new JsonHttpResponseHandler() {
 
             @Override
