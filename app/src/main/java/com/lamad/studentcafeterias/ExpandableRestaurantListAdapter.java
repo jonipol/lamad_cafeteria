@@ -73,9 +73,7 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
 
         TextView linkTextView = convertView.findViewById(R.id.listLink);
         linkTextView.setText(String.format(context.getString(R.string.link_field), restaurant.getLink()));
-//        linkTextView.setText(String.format(context.getString(R.string.link_field), Html.fromHtml(
-//                "<a href=" + restaurant.getLink() + ">Link</a> ")));
-//        linkTextView.setMovementMethod(LinkMovementMethod.getInstance());
+        // TODO: Change the text to a icon button
 
         Button viewMenuButton = convertView.findViewById(R.id.viewMenuButton);
         viewMenuButton.setOnClickListener(new View.OnClickListener() {

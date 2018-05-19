@@ -18,19 +18,19 @@
         android:roundIcon="@mipmap/ic_food_dome"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--<activity android:name=".SplashActivity"
+        <activity android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>-->
+        </activity>
         <activity
             android:name=".MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-                 <!--Icon from https://www.iconfinder.com/icons/379338/dome_food_icon#size=256-->
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.HOME" />
+                <!--Icon from https://www.iconfinder.com/icons/379338/dome_food_icon#size=256-->
             </intent-filter>
         </activity>
         <!--

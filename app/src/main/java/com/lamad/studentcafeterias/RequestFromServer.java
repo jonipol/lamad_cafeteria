@@ -55,9 +55,7 @@ public class RequestFromServer {
             public void onSuccess(int statusCode, Header[] headers, JSONArray cafeterias) {
                 // Do something with the response
                 System.out.println(cafeterias);
-                //RestaurantListFragment.parseCafeterias(cafeterias);
-
-                SplashActivity.parseCafeterias(cafeterias);
+                RestaurantListFragment.parseCafeterias(cafeterias);
             }
         });
     }

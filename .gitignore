@@ -4,7 +4,14 @@
 /.idea/libraries
 /.idea/modules.xml
 /.idea/workspace.xml
+/.idea/*
 .DS_Store
 /build
 /captures
 .externalNativeBuild
+/.idea/assetWizardSettings.xml
+/.idea/caches/build_file_checksums.ser
+/.idea/encodings.xml
+/.idea/gradle.xml
+/.idea/misc.xml
+/.idea/runConfigurations.xml
