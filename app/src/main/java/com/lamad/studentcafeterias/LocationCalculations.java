@@ -11,21 +11,18 @@ import cz.msebera.android.httpclient.Header;
 public class LocationCalculations {
     private final static String TAG = "LocationCalculations";
 
-    static double distance = 0;
-
     public static void calculateDistanceToAllRestaurants(Location location) {
         for (Restaurant restaurant : RestaurantListFragment.dataList) {
-            restaurant.setDistance(calculateDistance(location.getLatitude(), location.getLongitude(),
-                    restaurant.getLatitude(), restaurant.getLongitude()));
+            calculateDistance(location.getLatitude(), location.getLongitude(),
+                    restaurant);
         }
     }
 
-    public static double calculateDistance(double originLatitude, double originLongitude,
-                                           double destinationLatitude, double destinationLongitude) {
+    public static void calculateDistance(double originLatitude, double originLongitude,
+                                           final Restaurant restaurant) {
 
-        double distance = 0;
         String originString = "&origins=" + originLatitude + "," + originLongitude;
-        String destinationString = "&destinations=" + destinationLatitude + "," + destinationLongitude;
+        String destinationString = "&destinations=" + restaurant.getLatitude() + "," + restaurant.getLongitude();
 
         String beginningOfUrl = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric";
 //        String key = "&key=" + Resources.getSystem().getString(R.string.google_maps_key);
@@ -39,13 +36,12 @@ public class LocationCalculations {
                 try {
                     double distance = Double.valueOf(distanceMatrix.getJSONArray("rows").getJSONObject(0).getJSONArray("elements").getJSONObject(0).getJSONObject("distance").getString("value"));
                     Log.v(TAG, "Distance: " + distance);
-                    LocationCalculations.distance = distance;
+                    restaurant.setDistance(distance);
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Log.e(TAG, "Json parsing error in calculateDistance");
                 }
             }
         });
-        return distance;
     }
 }

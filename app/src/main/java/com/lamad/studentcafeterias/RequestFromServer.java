@@ -26,14 +26,11 @@ public class RequestFromServer {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
-                System.out.println("JSONObject");
-                System.out.println(response);
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray menus) {
                 // Do something with the response
-                System.out.println(menus);
                 RestaurantListFragment.parseMenus(menus);
             }
         });
@@ -47,14 +44,11 @@ public class RequestFromServer {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
-                System.out.println("JSONObject");
-                System.out.println(response);
             }
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray cafeterias) {
                 // Do something with the response
-                System.out.println(cafeterias);
                 RestaurantListFragment.parseCafeterias(cafeterias);
             }
         });

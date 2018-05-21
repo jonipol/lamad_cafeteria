@@ -130,7 +130,7 @@ public class Restaurant implements Serializable, Comparable{
 
     @Override
     public String toString() {
-        return name + ": " + address + " (" + latitude + " | " + longitude + ") " + "\n" + menu;
+        return name + ": " + address + " (" + latitude + " | " + longitude + ") + " + distance;
     }
 
     @Override
@@ -144,11 +144,4 @@ public class Restaurant implements Serializable, Comparable{
         Restaurant restaurant = (Restaurant) o;
         return Double.compare(this.distance, restaurant.getDistance());
     }
-
-    public static Comparator<Restaurant> RestaurantComparator = new Comparator<Restaurant>() {
-        @Override
-        public int compare(Restaurant o1, Restaurant o2) {
-            return o1.compareTo(o2);
-        }
-    };
 }

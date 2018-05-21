@@ -21,4 +21,7 @@
 
     <string name="no_menu_available">No menu available</string>
 
+    <string name="distanceMeters">%1$.1f m</string>
+    <string name="distanceKiloMeters">%1$.1f km</string>
+
 </resources>

@@ -70,10 +70,6 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
         TextView locationTextView = convertView.findViewById(R.id.listLocation);
         locationTextView.setText(String.format(context.getString(R.string.address_field),restaurant.getAddress()));
 
-//        TextView linkTextView = convertView.findViewById(R.id.listLink);
-//        linkTextView.setText(String.format(context.getString(R.string.link_field), restaurant.getLink()));
-        // TODO: Change the text to a icon button
-
         Button viewMenuButton = convertView.findViewById(R.id.viewMenuButton);
         viewMenuButton.setOnClickListener(new View.OnClickListener() {
               @Override
@@ -143,7 +139,11 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
 
         TextView distanceView = convertView
                 .findViewById(R.id.headerDistance);
-        distanceView.setText(String.valueOf(restaurant.getDistance())); // TODO: Calculation of the distance
+        double distance = restaurant.getDistance();
+        if (distance < 1000)
+            distanceView.setText(String.format(context.getString(R.string.distanceMeters), distance));
+        else
+            distanceView.setText(String.format(context.getString(R.string.distanceKiloMeters), distance / 1000));
 
         return convertView;
     }
