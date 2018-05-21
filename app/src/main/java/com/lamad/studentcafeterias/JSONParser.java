@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class JSONParser {
@@ -36,7 +37,7 @@ public class JSONParser {
         List<Restaurant> dataList = RestaurantListFragment.dataList;
         for (int i = 0; i < jsonArray.length(); i++) {
             Restaurant restaurant = null;
-            SparseArray<List<Dish>> restaurantMenus = new SparseArray<>();
+            HashMap<Integer, List<Dish>> restaurantMenus = new HashMap<>();
             JSONObject restaurantJsonObject = jsonArray.getJSONObject(i);
             String restaurantName = restaurantJsonObject.getString("restaurantName");
             // Because Carelia has that "opiskelijaravintola" infront of its name.
@@ -66,7 +67,7 @@ public class JSONParser {
                         }
                         dishList.add(new Dish(componentList, singleDish.getString("price")));
                     }
-                    restaurantMenus.append(k, dishList);
+                    restaurantMenus.put(k, dishList);
                 }
             } else
                 Log.wtf(TAG, "Restaurant " + restaurantName + " is missing from cafeterias table");

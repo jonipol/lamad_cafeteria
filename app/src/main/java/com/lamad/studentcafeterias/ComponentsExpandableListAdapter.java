@@ -1,6 +1,7 @@
 package com.lamad.studentcafeterias;
 
         import android.content.Context;
+        import android.content.res.Resources;
         import android.util.Log;
         import android.util.SparseArray;
         import android.view.LayoutInflater;
@@ -10,12 +11,13 @@ package com.lamad.studentcafeterias;
         import android.widget.TextView;
 
         import java.util.ArrayList;
+        import java.util.HashMap;
         import java.util.List;
 
 public class ComponentsExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
-    private SparseArray<List<Dish>> dataList;
+    private HashMap<Integer, List<Dish>> dataList;
     private List<String> weekdays;
 
 
@@ -71,13 +73,20 @@ public class ComponentsExpandableListAdapter extends BaseExpandableListAdapter {
 
         TextView componentView = convertView.findViewById(R.id.dishComponent);
         StringBuilder stringBuilder = new StringBuilder();
-        for (String item : dishesForDay.get(childPosition).getItems()) {
-            stringBuilder.append(item + "\n");
-        }
+        if (!dishesForDay.isEmpty())
+            for (String item : dishesForDay.get(childPosition).getItems()) {
+                stringBuilder.append(item + "\n");
+            }
+        else
+            stringBuilder.append(context.getResources().getString(R.string.no_menu_available));
+
         componentView.setText(stringBuilder.toString());
 
         TextView priceView = convertView.findViewById(R.id.dishPrice);
-        priceView.setText(dishesForDay.get(childPosition).getPrice());
+        if (!dishesForDay.isEmpty())
+            priceView.setText(dishesForDay.get(childPosition).getPrice());
+        else
+            priceView.setText("");
 
         return convertView;
     }
@@ -85,6 +94,8 @@ public class ComponentsExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
+        if (dataList.get(groupPosition).size() == 0)
+            return 1;
         return dataList.get(groupPosition).size();
     }
 

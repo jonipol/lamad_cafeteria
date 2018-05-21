@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.util.SparseArray;
 import java.io.Serializable;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -15,7 +16,7 @@ public class Restaurant implements Serializable, Comparable{
     private double longitude;
     private String link;
     private String address;
-    private SparseArray<List<Dish>> menu; // SparseArray is more efficient than HashMap when pairing objects to Integers
+    private HashMap<Integer, List<Dish>> menu; // SparseArray is more efficient than HashMap when pairing objects to Integers
     private double distance;
 
     /**
@@ -30,7 +31,7 @@ public class Restaurant implements Serializable, Comparable{
         this.link = link;
     }
 
-    public Restaurant(String name, SparseArray<List<Dish>> menus) {
+    public Restaurant(String name, HashMap<Integer, List<Dish>> menus) {
         this.name = name;
         this.menu = menus;
     }
@@ -44,7 +45,7 @@ public class Restaurant implements Serializable, Comparable{
         this.image = image;
     }
 
-    public Restaurant(String name, String address, String link, double latitude, double longitude, SparseArray<List<Dish>> menus) {
+    public Restaurant(String name, String address, String link, double latitude, double longitude, HashMap<Integer, List<Dish>> menus) {
         this.name = name;
         this.address = address;
         this.link = link;
@@ -53,7 +54,7 @@ public class Restaurant implements Serializable, Comparable{
         this.menu = menus;
     }
 
-    public Restaurant(String name, String address, String link,  double latitude, double longitude, SparseArray<List<Dish>> menus, String image) {
+    public Restaurant(String name, String address, String link,  double latitude, double longitude, HashMap<Integer, List<Dish>> menus, String image) {
         this.name = name;
         this.address = address;
         this.link = link;
@@ -88,7 +89,7 @@ public class Restaurant implements Serializable, Comparable{
         return link;
     }
 
-    public SparseArray<List<Dish>> getMenu() {
+    public HashMap<Integer, List<Dish>> getMenu() {
         return menu;
     }
 
@@ -112,7 +113,7 @@ public class Restaurant implements Serializable, Comparable{
         this.link = link;
     }
 
-    public void setMenu(SparseArray<List<Dish>> menu) {
+    public void setMenu(HashMap<Integer, List<Dish>> menu) {
         this.menu = menu;
     }
 
