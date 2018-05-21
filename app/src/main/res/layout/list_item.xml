@@ -17,16 +17,16 @@
         android:text="@string/address_field"
         android:textSize="@dimen/list_item_text_size"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/listLink"
-        android:layout_gravity="center"
-        android:gravity="fill"
-        android:paddingStart="@dimen/list_item_padding"
-        android:paddingEnd="0dp"
-        android:text="@string/link_field"
-        android:textSize="@dimen/list_item_text_size"/>
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/listLink"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:gravity="fill"-->
+        <!--android:paddingStart="@dimen/list_item_padding"-->
+        <!--android:paddingEnd="0dp"-->
+        <!--android:text="@string/link_field"-->
+        <!--android:textSize="@dimen/list_item_text_size"/>-->
 
 
 
@@ -47,6 +47,12 @@
             android:textStyle="bold"-->
             <!-- Image from: https://findicons.com/icon/558494/restaurant -->
 
+        <Button
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:id="@+id/linkButton"
+            android:background="@drawable/ic_link_black_24dp"
+            />
 
         <Button
             android:layout_width="48dp"

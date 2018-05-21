@@ -2,6 +2,7 @@ package com.lamad.studentcafeterias;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -69,8 +70,8 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
         TextView locationTextView = convertView.findViewById(R.id.listLocation);
         locationTextView.setText(String.format(context.getString(R.string.address_field),restaurant.getAddress()));
 
-        TextView linkTextView = convertView.findViewById(R.id.listLink);
-        linkTextView.setText(String.format(context.getString(R.string.link_field), restaurant.getLink()));
+//        TextView linkTextView = convertView.findViewById(R.id.listLink);
+//        linkTextView.setText(String.format(context.getString(R.string.link_field), restaurant.getLink()));
         // TODO: Change the text to a icon button
 
         Button viewMenuButton = convertView.findViewById(R.id.viewMenuButton);
@@ -87,6 +88,16 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
                   transaction.commit();
               }
           });
+
+        Button linkButton = convertView.findViewById(R.id.linkButton);
+        linkButton.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(restaurant.getLink()));
+                  context.startActivity(intent);
+              }
+          }
+        );
 
         Button mapButton = convertView.findViewById(R.id.mapButton);
         mapButton.setOnClickListener(new View.OnClickListener() {
