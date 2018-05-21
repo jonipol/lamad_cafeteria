@@ -73,7 +73,12 @@ public class RestaurantListFragment extends Fragment {
     public static void calculateLocations(){
 
         Handler handler = new Handler();
+
         Location location = SplashActivity.getLocation();
+        if (location == null){
+            return;
+        }
+
         LocationCalculations.calculateDistanceToAllRestaurants(location);
         Runnable delayedSort = new Runnable() {
             @Override

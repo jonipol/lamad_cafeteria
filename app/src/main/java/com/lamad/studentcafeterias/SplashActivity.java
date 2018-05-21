@@ -76,9 +76,10 @@ public class SplashActivity extends AppCompatActivity {
                 != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED) {
+            System.out.println("Permission not granted yet, continuing without it");
 
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
-                    1);
+            //ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION},
+            //        1);
         } else {
             Location locationNetwork = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             Location locationGps = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -115,6 +116,8 @@ public class SplashActivity extends AppCompatActivity {
                 });
         builder.show();
     }
+
+
 
 //    private Runnable prepareDataList = new Runnable() {
 //        @Override
