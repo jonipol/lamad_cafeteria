@@ -33,14 +33,14 @@ public class SplashActivity extends AppCompatActivity {
 
         handler.post(startFetchingInBackground);
 
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-            getLocation();
-        else
-            noGPSProviderEnabledMessage();
+//        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+//            getLocation();
+//        else
+//            noGPSProviderEnabledMessage();
 
-        Log.d(TAG, "Location: " + location);
-        handler.postDelayed(prepareDataList, 2000); //TODO: Find way to handle this. (Not working)
+//        Log.d(TAG, "Location: " + location);
+//        handler.postDelayed(prepareDataList, 2000); //TODO: Find way to handle this. (Not working)
         handler.postDelayed(startMainActivity, 2500);
     }
 

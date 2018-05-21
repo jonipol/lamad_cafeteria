@@ -15,8 +15,8 @@ public class Restaurant implements Serializable, Comparable{
     private double longitude;
     private String link;
     private String address;
-    private HashMap<Integer, List<Dish>> menu; // SparseArray is more efficient than HashMap when pairing objects to Integers
-    private double distance;
+    private HashMap<Integer, List<Dish>> menu;
+    private double distance = -1;
 
     /**
      * For testing purposes
@@ -131,6 +131,12 @@ public class Restaurant implements Serializable, Comparable{
     @Override
     public String toString() {
         return name + ": " + address + " (" + latitude + " | " + longitude + ") " + "\n" + menu;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Restaurant restaurant = (Restaurant) o;
+        return this.getName().toUpperCase().equals(restaurant.getName().toUpperCase());
     }
 
     @Override

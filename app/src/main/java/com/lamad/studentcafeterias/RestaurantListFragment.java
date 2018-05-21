@@ -2,6 +2,7 @@ package com.lamad.studentcafeterias;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,11 @@ public class RestaurantListFragment extends Fragment {
 
     public static void parseCafeterias(JSONArray jsonArray) {
         try {
-            dataList.addAll(JSONParser.readRestaurantJson(jsonArray));
+            List<Restaurant> restaurantList = (JSONParser.readRestaurantJson(jsonArray));
+            for (Restaurant restaurant : restaurantList) {
+                if (!dataList.contains(restaurant))
+                    dataList.add(restaurant);
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
