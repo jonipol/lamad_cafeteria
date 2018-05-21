@@ -32,14 +32,8 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.splash_screen);
 
         handler.post(startFetchingInBackground);
+        setLocation();
 
-//        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-//            getLocation();
-//        else
-//            noGPSProviderEnabledMessage();
-
-//        Log.d(TAG, "Location: " + location);
 //        handler.postDelayed(prepareDataList, 2000); //TODO: Find way to handle this. (Not working)
         handler.postDelayed(startMainActivity, 2500);
     }
@@ -68,7 +62,16 @@ public class SplashActivity extends AppCompatActivity {
         }
     };
 
-    private void getLocation() {
+    public static Location getLocation(){
+        return location;
+    }
+
+    private void setLocation() {
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            noGPSProviderEnabledMessage();
+            return;
+        }
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -113,13 +116,13 @@ public class SplashActivity extends AppCompatActivity {
         builder.show();
     }
 
-    private Runnable prepareDataList = new Runnable() {
-        @Override
-        public void run() {
-            Log.v(TAG, "Sorting dataList");
-            LocationCalculations.calculateDistanceToAllRestaurants(location);
-            Collections.sort(RestaurantListFragment.dataList);
-            Log.v(TAG, "Sorting dataList done");
-        }
-    };
+//    private Runnable prepareDataList = new Runnable() {
+//        @Override
+//        public void run() {
+//            Log.v(TAG, "Sorting dataList");
+//            LocationCalculations.calculateDistanceToAllRestaurants(location);
+//            Collections.sort(RestaurantListFragment.dataList);
+//            Log.v(TAG, "Sorting dataList done");
+//        }
+//    };
 }

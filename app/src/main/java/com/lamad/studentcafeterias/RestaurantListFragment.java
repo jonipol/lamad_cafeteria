@@ -1,6 +1,10 @@
 package com.lamad.studentcafeterias;
 
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +17,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
 
 public class RestaurantListFragment extends Fragment {
 
@@ -21,6 +27,7 @@ public class RestaurantListFragment extends Fragment {
     ExpandableListView expandableListView;
     ExpandableListAdapter listAdapter;
     static List<Restaurant> dataList = new ArrayList<>();
+    private LocationManager locationManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,6 +36,9 @@ public class RestaurantListFragment extends Fragment {
         View view = inflater.inflate(R.layout.list_fragment, container, false);
 
         expandableListView = view.findViewById(R.id.expendableRestaurantListView);
+        System.out.println("datalist" + dataList);
+
+
 
         listAdapter = new ExpandableRestaurantListAdapter(this.getContext(), dataList, getFragmentManager());
         expandableListView.setAdapter(listAdapter);
@@ -54,6 +64,7 @@ public class RestaurantListFragment extends Fragment {
                 if (!dataList.contains(restaurant))
                     dataList.add(restaurant);
             }
+            calculateLocations();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -65,5 +76,24 @@ public class RestaurantListFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void calculateLocations(){
+
+        Handler handler = new Handler();
+        System.out.println("Datalist before sort" + RestaurantListFragment.dataList);
+        Location location = SplashActivity.getLocation();
+        LocationCalculations.calculateDistanceToAllRestaurants(location);
+        Runnable delayedSort = new Runnable() {
+            @Override
+            public void run() {
+                Collections.sort(RestaurantListFragment.dataList);
+                for (Restaurant restaurant : RestaurantListFragment.dataList){
+                    System.out.println("Restaurant distance:" + restaurant.getDistance());
+                }
+                System.out.println("Datalist after sort"+ RestaurantListFragment.dataList);
+            }
+        };
+        handler.postDelayed(delayedSort, 1000);
     }
 }
