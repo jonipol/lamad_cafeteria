@@ -1,16 +1,11 @@
 package com.lamad.studentcafeterias;
 
-import android.util.JsonReader;
 import android.util.Log;
-import android.util.SparseArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,7 +40,6 @@ public class JSONParser {
             // TODO: names that have two or more words in it.
             if (restaurantName.split(" ").length > 1) {
                 restaurantName = restaurantName.split(" ")[1];
-                Log.v("TAAG", restaurantName);
             }
             // Check if the restaurant can be found from database
             for (int j = 0; j < dataList.size(); j++) {

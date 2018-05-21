@@ -1,10 +1,8 @@
 package com.lamad.studentcafeterias;
 
-import android.content.res.Resources;
+import android.location.Location;
 import android.util.Log;
-
 import com.loopj.android.http.JsonHttpResponseHandler;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,6 +12,14 @@ public class LocationCalculations {
     private final static String TAG = "LocationCalculations";
 
     static double distance = 0;
+
+    public static void calculateDistanceToAllRestaurants(Location location) {
+        for (Restaurant restaurant : RestaurantListFragment.dataList) {
+            restaurant.setDistance(calculateDistance(location.getLatitude(), location.getLongitude(),
+                    restaurant.getLatitude(), restaurant.getLongitude()));
+        }
+    }
+
     public static double calculateDistance(double originLatitude, double originLongitude,
                                            double destinationLatitude, double destinationLongitude) {
 
@@ -40,7 +46,6 @@ public class LocationCalculations {
                 }
             }
         });
-
         return distance;
     }
 }

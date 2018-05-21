@@ -1,7 +1,6 @@
 package com.lamad.studentcafeterias;
 
 import android.support.annotation.NonNull;
-import android.util.SparseArray;
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -140,7 +139,7 @@ public class Restaurant implements Serializable, Comparable{
         return Double.compare(this.distance, restaurant.getDistance());
     }
 
-    public static Comparator<Restaurant> RestauranComparator = new Comparator<Restaurant>() {
+    public static Comparator<Restaurant> RestaurantComparator = new Comparator<Restaurant>() {
         @Override
         public int compare(Restaurant o1, Restaurant o2) {
             return o1.compareTo(o2);

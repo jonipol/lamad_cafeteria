@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -134,7 +132,7 @@ public class ExpandableRestaurantListAdapter extends BaseExpandableListAdapter {
 
         TextView distanceView = convertView
                 .findViewById(R.id.headerDistance);
-        distanceView.setText(""); // TODO: Calculation of the distance
+        distanceView.setText(String.valueOf(restaurant.getDistance())); // TODO: Calculation of the distance
 
         return convertView;
     }
